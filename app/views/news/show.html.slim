@@ -1,0 +1,13 @@
+= render 'layouts/header', news: @news, page_name: 'Просмотр новости'
+.container.detailed-news
+  .title
+    = @news.title
+  .body
+    .image
+      | <img src="
+      = @news.img
+      | " alt="Картинка">
+    .text
+      = @news.content 
+  .controls
+    = link_to 'Редактировать', edit_news_path(@news), class: 'btn btn-primary'

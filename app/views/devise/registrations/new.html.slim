@@ -1,0 +1,19 @@
+= render 'layouts/header', news: @news, page_name: 'Регистрация'
+
+.container.wrapper
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label 'Электронная почта:'
+      br
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label 'Пароль:'
+      br
+      = f.password_field :password, autocomplete: "new-password"
+    .field
+      = f.label 'Повторите пароль:'
+      br
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .actions
+      = f.submit class: 'btn btn-primary'

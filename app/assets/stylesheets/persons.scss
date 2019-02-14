@@ -1,0 +1,80 @@
+// Place all the styles related to the persons controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.body {
+	display: flex;
+	padding-top: 20px;
+	justify-content:center;
+	font-size:28px;
+	form {
+		display:flex;
+		flex-direction: column;
+		justify-content:center;
+		align-items:center;
+		.btn {
+			font-size:28px;
+		}
+	}
+	.email {
+		margin:10px;
+		font-size:40px;
+	}
+	.field {
+		margin: 10px;
+	}
+	.option {
+		margin: 30px 0 40px 0;
+		width:100%;
+		transition: 1s;
+		display:flex;
+		border-radius: 10px;
+		.el {
+			label {
+				margin:0;
+				width:100%;
+			}
+			width:100%;
+			.text-bad {
+				text-align: center;
+				width: 100%;
+				transition: 0.7s;
+				box-shadow: 0;
+				&:hover {
+					cursor: pointer;
+					box-shadow: inset 0px -4px 0px 0px red;
+				}
+				padding: 10px 0;
+			}
+			input:checked ~ .text-bad {
+				transition: 0.7s;
+				background-color: red;
+				color: white;
+			}
+			.text-good {
+				text-align: center;
+				width: 100%;
+				transition: 0.7s;
+				box-shadow: 0;
+				&:hover {
+					cursor: pointer;
+					box-shadow: inset 0px -4px 0px 0px blue;
+				}
+				padding: 10px 0;
+			}
+			font-size: 20px;
+			display: flex;
+			input:checked ~ .text-good {
+				transition: 0.7s;
+				background-color: blue;
+				color: white;
+			}
+			input {
+				position: absolute;
+				opacity: 0;
+				height: 0;
+				width: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,24 @@
+= render 'layouts/header', news: @news, page_name: 'Новости'
+.container.wrapper
+	- @news.each do |news|
+		.news-item
+			.content
+				= link_to news, class: 'title' do
+					div
+						= news.title
+					div
+						= news.date.strftime('%d.%m %H:%M')
+				.description
+					= news.description
+				.info
+					.author
+						= @users.find(news.author).email
+				.controls.btn-group
+					= link_to 'Редактировать', edit_news_path(news), class: 'el btn btn-light'
+					= link_to 'Удалить', news, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'el btn btn-light'
+			.image
+				| <img src="
+				= news.img
+				| " alt="Картинка">
+	.create-control.btn.btn-primary
+		= link_to 'Создать', new_news_path

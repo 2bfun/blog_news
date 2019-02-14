@@ -1,0 +1,14 @@
+h1
+	| Еженедельный дайджест
+- @news.each do |news|
+	<div style='height:250px;'>
+		h2
+			= news.title
+		| <img src="
+		= news.img
+		| " alt="Картинка" style="width:200px;height:200px; float:left">
+		p
+			= news.description
+		p
+			= news.date.strftime('%d.%m %H:%M')
+	</div>

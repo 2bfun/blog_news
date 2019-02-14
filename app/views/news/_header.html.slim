@@ -1,0 +1,16 @@
+.header.container-fluid
+  = link_to root_path, class: 'logo' do
+    .first
+      | Blog
+    .second
+      | News
+  div
+    - if user_signed_in?
+      span
+        = current_user.email
+      = link_to 'My profile', 'persons/profile', class: 'btn btn-primary'
+      = link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-danger'
+    - else
+      = link_to 'Sign in', new_user_session_path, class: 'btn btn-success'
+      |  or 
+      = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary'

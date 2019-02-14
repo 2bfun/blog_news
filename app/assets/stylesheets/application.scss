@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+@font-face {
+  font-family: 'Staatliches-Regular';
+  src:font-url('Staatliches-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header {
+	padding: 30px;
+	display:flex;
+	justify-content: space-between;
+	align-items:center;
+	width: 100%;
+
+	.person {
+		width:100%;
+		text-align:right;
+	}
+
+	.main-title {
+		text-align:center;
+		width:100%;
+		font-size: 60px;
+		font-family: 'Staatliches-Regular';
+	}
+
+	.logo {
+		width:100%;
+		text-align:left;
+		transition: .5s;
+		text-decoration: none;
+		font-family: 'Staatliches-Regular';
+		font-size: 50px;
+		display: flex;
+		align-items:center;
+		border-bottom-right-radius: 7px;
+		border-top-right-radius: 7px;
+		&:hover {
+		}
+		.first {
+			color: black;
+			padding: 10px 20px; 
+		}
+		.second {
+			padding: 10px 20px; 
+			color: white;
+			background-color: red;
+			border-bottom-right-radius: 7px;
+			border-top-right-radius: 7px;
+		}
+	}
+	.username {
+		width:100%;
+		font-size: 20px;
+		font-weight: 500;
+	}
+	.btn {
+		margin: 5px;
+		// height: 100%;
+	}
+}
+

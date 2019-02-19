@@ -45,18 +45,4 @@ class PersonsController < ApplicationController
 			format.html { redirect_to '/persons/profile', notice: 'Изменения успешно сохранены' }
 		end
 	end
-	end
-	def send_email
-		if current_user
-			@user = current_user
-			UserNotifierMailer.send_signup_email(@user).deliver
-			respond_to do |format|
-				format.html {redirect_to '/persons/profile', notice: 'send'}
-			end
-		else
-			respond_to do |format|
-				format.html {redirect_to root_path}
-			end
-		end
-	end
 end

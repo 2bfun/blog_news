@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'commontator', '~> 5.1.0'
-gem "wysiwyg-rails"
+gem 'ckeditor'
 gem "font-awesome-sass"
 gem 'delayed_job_recurring', '~> 0.3.5'
 gem 'pg', '~> 0.21'

@@ -38,11 +38,12 @@ class PersonsController < ApplicationController
 		end
 	end
 	def update
-	respond_to do |format|
-		@user = current_user
-		@user.distribution_option = params[:user][:distribution_option]
-		if @user.save
-			format.html { redirect_to '/persons/profile', notice: 'Изменения успешно сохранены' }
+		respond_to do |format|
+			@user = current_user
+			@user.distribution_option = params[:user][:distribution_option]
+			if @user.save
+				format.html { redirect_to '/persons/profile', notice: 'Изменения успешно сохранены' }
+			end
 		end
 	end
 end

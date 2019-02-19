@@ -1,28 +1,31 @@
 = form_with(model: news, local: true) do |form|
-  - if news.errors.any?
-    #error_explanation
-      h2
-        = pluralize(news.errors.count, "error")
-        |  prohibited this news from being saved:
-      ul
-        - news.errors.full_messages.each do |message|
-          li
-            = message
-  .field
-    = form.label 'Заголовок:'
-    br
-    = form.text_field :title, id: :news_title
-  .field
-    = form.label 'Текст:'
-    br
-    = form.text_field :content, id: :news_content
-  .field
-    = form.label 'Краткое описание:'
-    br
-    = form.text_field :description, id: :news_description
-  .field
-    = form.label 'URL изображения'
-    br
-    = form.text_field :img, id: :news_img
-  .actions
-    = form.submit 'Создать', class: 'btn btn-success'
+	- if news.errors.any?
+		#error_explanation
+			h2
+				= pluralize(news.errors.count, "error")
+				|  prohibited this news from being saved:
+			ul
+				- news.errors.full_messages.each do |message|
+					li
+						= message
+	.field
+		= form.label 'Заголовок:'
+		br
+		= form.text_area :title, id: :news_title
+	.field
+		= form.label 'Текст:'
+		br
+		= form.text_area :content, id: :news_content, class: 'wysiwyg'
+	.field
+		= form.label 'Краткое описание:'
+		br
+		= form.text_area :description, id: :news_description, class: 'wysiwyg'
+	.field
+		= form.label 'URL изображения'
+		br
+		= form.text_field :img, id: :news_img
+	.actions
+		= form.submit 'Создать', class: 'btn btn-success'
+javascript:
+	$(function() { $('textarea.wysiwyg').froalaEditor() });
+

@@ -4,11 +4,8 @@ class MailWeekRepeater
 	run_at 'monday 4:00am'
 	queue :default
 	def perform
-	  	@users = User.all
-	  	@users.each do |u|
-	  		if u.distribution_option == 'weekly'
-	  			UserNotifierMailer.send_week_email(u).deliver
-	  		end
-	  	end
+			User.where(distribution_option: 'weekly').each do |u|
+				UserNotifierMailer.send_week_email(u).deliver
+			end
 	end
 end

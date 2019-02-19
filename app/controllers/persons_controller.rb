@@ -1,47 +1,62 @@
 class PersonsController < ApplicationController
-  def profile
-  	@user = current_user
-  end
 
+	def check
+	end
+
+
+	def profile
+		@user = current_user
+	end
+
+	def admin_page
+		if current_user
+			if current_user.admin
+				@user = current_user
+				@users = User.all
+			else
+				respond_to do |format|
+					format.html {redirect_to root_path }
+				end
+			end
+		else 
+			respond_to do |format|
+					format.html {redirect_to root_path }
+			end
+		end
+	end
+
+	def make_admin
+		if current_user
+			if current_user.admin 
+				@user = User.find_by_email(params[:user][:email])
+				@user.admin = true
+				@user.save
+			end
+		end
+		respond_to do |format|
+			format.html { redirect_to root_path }
+		end
+	end
 	def update
-  	@users = User.all
-    respond_to do |format|
-    	@temp = current_user.attributes
-
-    	@temp[:distribution_option] = params[:user][:distribution_option]
-    	@temp[:name] = params[:user][:name]
-  		if @users.update(@temp)
-        	format.html { redirect_to '/persons/profile', notice: 'Изменения успешно сохранены' }
-  		end
-  	end
+	respond_to do |format|
+		@user = current_user
+		@user.distribution_option = params[:user][:distribution_option]
+		if @user.save
+			format.html { redirect_to '/persons/profile', notice: 'Изменения успешно сохранены' }
+		end
+	end
 	end
 	def send_email
-		# using SendGrid's Ruby Library
-		# https://github.com/sendgrid/sendgrid-ruby
-		@user = current_user
- 		UserNotifierMailer.send_signup_email(@user).deliver
-		# puts 'from'
-		# from = Email.new(email: 'test@example.com')
-		# puts 'to'
-		# to = Email.new(email: 'tobefunwork@gmail.com')
-		# puts 'subjet'
-		# subject = 'Привет! ты чё там'
-		# puts 'content'
-		# content = Content.new(type: 'text/plain', value: 'сука )))))')
-		# puts 'mail'
-		# mail = Mail.new(from, subject, to, content)
-
-		# puts 'sg'
-		# sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-		# puts 'response'
-		# response = sg.client.mail._('send').post(request_body: mail.to_json)
-		# puts response.status_code
-		# puts response.body
-		# puts response.headers
-		# @user = current_user
-    respond_to do |format|
-      format.html {redirect_to '/persons/profile', notice: 'send'}
-
-  	end
+		if current_user
+			@user = current_user
+			UserNotifierMailer.send_signup_email(@user).deliver
+			respond_to do |format|
+				format.html {redirect_to '/persons/profile', notice: 'send'}
+			end
+		else
+			respond_to do |format|
+				format.html {redirect_to root_path}
+			end
+		end
 	end
 end

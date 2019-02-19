@@ -1,16 +1,28 @@
 // Place all the styles related to the news controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+.thread {
+	margin-top: 15px;
+	a {
+		@extend .btn;
+		@extend .btn-primary;
+	}
+	.thread_actions {
+		text-align: right;
+	}
+	.thread_header {
+		font-size: 24px;
+	}
+	.comment_commontator {
+		font-size: 18px;
+	}
+}
 
 .wrapper {
 	a {
-		color: black;
 		&:hover {
-			color: black;
 			text-decoration: none;
-		}
-		&:visited {
-			color:inherit;
 		}
 	}
 	.news-item {

@@ -1,0 +1,9 @@
+= render 'layouts/header', news: @news, page_name: 'Мой профиль'
+.container-fluid.body
+	= form_for :user, url: '/persons/make_admin', method: 'patch' do |f|
+		| Назначить администратора:
+		= f.label '', class: 'my-custom-select fas'
+			= f.select :email do
+				- @users.each do |u|
+					= content_tag :option, u.email, class:'dropdown-item'
+		= f.submit class: 'btn btn-success'

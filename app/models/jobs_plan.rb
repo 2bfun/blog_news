@@ -1,3 +1,0 @@
-class JobsPlan < ApplicationRecord
-	
-end

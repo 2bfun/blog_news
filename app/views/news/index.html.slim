@@ -8,17 +8,20 @@
 						= news.title
 					div
 						= news.date.strftime('%d.%m %H:%M')
-				.description
-					= news.description
+				.description 
+					| #{{news.description}}
 				.info
 					.author
 						= @users.find(news.author).email
-				.controls.btn-group
-					= link_to 'Редактировать', edit_news_path(news), class: 'el btn btn-light'
-					= link_to 'Удалить', news, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'el btn btn-light'
+				- if current_user
+					- if current_user.admin? || news.author == current_user.id
+						.controls.btn-group
+							= link_to 'Редактировать', edit_news_path(news), class: 'el btn btn-light'
+							= link_to 'Удалить', news, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'el btn btn-light'
 			.image
 				| <img src="
 				= news.img
 				| " alt="Картинка">
-	.create-control.btn.btn-primary
-		= link_to 'Создать', new_news_path
+	- if current_user
+		- if current_user.admin?
+			= link_to 'Создать', new_news_path, class: 'create-control btn btn-primary'

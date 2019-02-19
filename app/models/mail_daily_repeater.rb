@@ -4,11 +4,8 @@ class MailDailyRepeater
 	run_at '4:00am'
 	queue :default
 	def perform
-	  	@users = User.all
-	  	@users.each do |u|
-	  		if u.distribution_option == 'daily'
-	  			UserNotifierMailer.send_daily_email(u).deliver
-	  		end
-	  	end
+			User.where(distribution_option: 'daily').each do |u|
+				UserNotifierMailer.send_daily_email(u).deliver
+			end
 	end
 end

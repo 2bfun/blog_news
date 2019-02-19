@@ -1,23 +1,23 @@
 = render 'layouts/header', news: @news, page_name: 'Мой профиль'
 .container-fluid.body
-  = form_for :user, url: 'update', method: 'patch' do |f|
-    .field.email
-      = @user.email
-    |Получать дайджест:
-    .field.option
-      .el
-        = f.label :distribution_option_weekly do
-          = f.radio_button :distribution_option, :weekly
-          .text-good
-            | Еженедельно
-      .el
-        = f.label :distribution_option_daily do
-          = f.radio_button :distribution_option, :daily
-          .text-good
-            | Ежедневно
-      .el
-        = f.label :distribution_option_off do
-          = f.radio_button :distribution_option, :off
-          .text-bad
-            | Выключить
-    = f.submit class: 'btn btn-success'
+	= form_for :user, url: 'update', method: 'patch' do |f|
+		.field.email
+			= @user.email
+		|Получать дайджест:
+		.field.option
+			.el
+				= f.label :distribution_option_weekly do
+					= f.radio_button :distribution_option, :weekly
+					.text-good
+						| Еженедельно
+			.el
+				= f.label :distribution_option_daily do
+					= f.radio_button :distribution_option, :daily
+					.text-good
+						| Ежедневно
+			.el
+				= f.label :distribution_option_off do
+					= f.radio_button :distribution_option, :off
+					.text-bad
+						| Выключить
+		= f.submit class: 'btn btn-success'

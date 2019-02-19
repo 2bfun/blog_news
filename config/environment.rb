@@ -1,16 +1,6 @@
 # Load the Rails application.
 require_relative 'application'
 
-# ActionMailer::Base.smtp_settings = {
-#   :user_name => 'tobefun',
-#   :password => '1q1q1q1q1q',
-#   :domain => 'my-blog-news-test.herokuapp.com',
-#   :address => 'smtp.sendgrid.net',
-#   :port => 587,
-#   :authentication => :plain,
-#   :enable_starttls_auto => true
-# }
-
 ActionMailer::Base.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
